@@ -1,0 +1,4 @@
+#EXTM3U
+
+#EXT-X-STREAM-INF:BANDWIDTH=2500000,RESOLUTION=1280x720
+http://app-plus.live:80/live/9lxuwq145z/272fm2u0lj/3.m3u8
