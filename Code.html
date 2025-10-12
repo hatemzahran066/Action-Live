@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Action Live</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+body{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;color:#fff;overflow:hidden;}
+body::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://up6.cc/2025/08/17579324210031.jpg') no-repeat center center/cover;filter:brightness(0.45);z-index:-2}
+body::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(15,15,23,0.7),rgba(28,28,41,0.7),rgba(10,10,20,0.7));background-size:400% 400%;animation:bgMove 12s ease infinite;z-index:-1}
+@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* العنوان مع تأثير ظهور الخط */
+h2{
+  margin-bottom:15px;
+  font-size:22px;
+  font-weight:700;
+  text-align:center;
+  position:relative;
+  opacity:0;
+  animation:fadeIn 1s forwards;
+}
+h2::after{
+  content:"";
+  display:block;
+  width:0;
+  height:3px;
+  background:#F9760B;
+  margin:15px auto 0;
+  border-radius:2px;
+  animation:lineGrow 1s forwards 0.5s;
+}
+@keyframes lineGrow{
+  to{width:320px;}
+}
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+/* ظهور تدريجي للحقول والأزرار */
+.input-box, .time-box{
+  position:relative;
+  margin:10px 0;
+  width:320px;
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp 0.6s forwards;
+}
+.input-box:nth-of-type(1){animation-delay:0.6s;}
+.input-box:nth-of-type(2){animation-delay:0.9s;}
+.time-box{animation-delay:1.2s;}
+
+@keyframes fadeUp{
+  to{opacity:1; transform:translateY(0);}
+}
+
+.input-box input{
+  width:100%;
+  padding:14px 40px 14px 80px;
+  border:none;
+  border-radius:10px;
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  font-size:16px;
+  outline:none;
+  backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,0.3);
+}
+.input-box .icon{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  right:12px;
+  color:#F9760B;
+  font-size:18px;
+}
+.copy-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  left:0;
+  height:100%;
+  width:70px;
+  border:none;
+  border-radius:10px 0 0 10px;
+  background:#F9760B;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:14px;
+}
+.copy-btn.success{background:#4CAF50;}
+
+.time-box{
+  margin-top:10px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(4px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 20px;
+  font-size:16px;
+  color:#F9D423;
+  font-weight:700;
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.3);
+}
+
+h2 {
+  margin-bottom: 15px;
+  font-size:22px;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  width: 320px; /* نفس عرض الحقول الابتدائي */
+  max-width: 100%;
+}
+
+/* الخط أسفل العنوان يتوسع بنفس عرض الحاوية */
+h2::after {
+  content:"";
+  display:block;
+  width:0;
+  height:3px;
+  background:#F9760B;
+  margin:15px auto 0;
+  border-radius:2px;
+  animation:lineGrow 1s forwards 0.5s;
+}
+
+@keyframes lineGrow {
+  to { width: 100%; } /* كامل عرض الـ h2 */
+}
+
+/* التكيف مع الشاشات */
+/* التكيف مع الشاشات */
+@media screen and (min-width:600px){ h2,.input-box,.time-box{width:400px;} }
+@media screen and (min-width:800px){ h2,.input-box,.time-box{width:450px;} .input-box input{font-size:20px;padding:18px 50px 18px 14px;} .copy-btn{width:90px;font-size:16px;} .time-box{font-size:20px;padding:18px 20px;} }
+@media screen and (min-width:1024px){ h2,.input-box,.time-box{width:500px;} }
+@media screen and (min-width:1280px){ h2,.input-box,.time-box{width:550px;} }
+</style>
+</head>
+<body>
+
+<h2>كود التفعيل الخاص بك</h2>
+
+<div class="input-box">
+  <input type="text" id="username" readonly placeholder="اسم المستخدم">
+  <i class="fas fa-user icon"></i>
+  <button class="copy-btn" id="copyUserBtn">نسخ</button>
+</div>
+
+<div class="input-box">
+  <input type="text" id="password" readonly placeholder="كلمة المرور">
+  <i class="fas fa-lock icon"></i>
+  <button class="copy-btn" id="copyPassBtn">نسخ</button>
+</div>
+
+<div class="time-box">
+  <span id="expireTime">--:--</span>
+</div>
+
+<script>
+// مدة الكود = دقيقتين
+const codeDuration = 5 * 60 * 1000; // 2 دقيقة بالمللي ثانية
+
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+const nums = "0123456789";
+
+function seededRandom(seed){
+  seed = (seed * 9301 + 49297) % 233280;
+  return seed;
+}
+
+function randomStringFromSeed(seed, chars, length){
+  let s = '';
+  let cur = seed;
+  for(let i=0;i<length;i++){
+    cur = seededRandom(cur);
+    s += chars.charAt(cur % chars.length);
+  }
+  return s;
+}
+
+// توليد كود بناءً على الوقت الحالي
+function generateCode(){
+  const now = Date.now();
+  const periodIndex = Math.floor(now / codeDuration); // كل فترة لها رقم ثابت
+  const seed = periodIndex; // الرقم ثابت لكل فترة زمنية
+  const user = randomStringFromSeed(seed, chars, 8);
+  const pass = randomStringFromSeed(seed + 12345, nums, 10);
+  const startTime = periodIndex * codeDuration;
+  return { user, pass, startTime };
+}
+
+function updateDisplay(){
+  const code = generateCode();
+  document.getElementById('username').value = code.user;
+  document.getElementById('password').value = code.pass;
+  return code;
+}
+
+function startCountdown(){
+  const expireElem = document.getElementById('expireTime');
+  const code = generateCode();
+
+  const timer = setInterval(()=>{
+    const now = Date.now();
+    const remainingSec = Math.floor((code.startTime + codeDuration - now)/1000);
+
+    if(remainingSec <= 0){
+      clearInterval(timer);
+      expireElem.textContent = "انتهت صلاحية الكود الخاص بك - سيتم تحديث الصفحة للحصول على الكود الجديد";
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+      return;
+    }
+
+    const minutes = String(Math.floor(remainingSec/60)).padStart(2,'0');
+    const seconds = String(remainingSec%60).padStart(2,'0');
+    expireElem.textContent = `كود التفعيل صالح لمدة : ${minutes}:${seconds}`;
+  }, 1000);
+}
+
+// نسخ
+function copyUser(){
+  const code = generateCode();
+  navigator.clipboard.writeText(code.user).then(()=>{
+    const btn=document.getElementById('copyUserBtn');
+    btn.textContent='تم النسخ'; btn.classList.add('success');
+    setTimeout(()=>{btn.textContent='نسخ'; btn.classList.remove('success');},2000);
+  });
+}
+function copyPass(){
+  const code = generateCode();
+  navigator.clipboard.writeText(code.pass).then(()=>{
+    const btn=document.getElementById('copyPassBtn');
+    btn.textContent='تم النسخ'; btn.classList.add('success');
+    setTimeout(()=>{btn.textContent='نسخ'; btn.classList.remove('success');},2000);
+  });
+}
+
+document.getElementById('copyUserBtn').addEventListener('click', copyUser);
+document.getElementById('copyPassBtn').addEventListener('click', copyPass);
+
+// تشغيل عند الفتح
+updateDisplay();
+startCountdown();
+</script>
+</body>
+</html>
