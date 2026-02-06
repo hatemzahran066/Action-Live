@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صدقة جارية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #10b981;
+            --gold: #fbbf24;
+            --bg-dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; text-decoration: none !important; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* خلفية النجوم المتحركة */
+        .bg-animated {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            z-index: -1;
+        }
+        .bg-animated::after {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
+            background-size: 50px 50px; opacity: 0.1; animation: moveBg 25s linear infinite;
+        }
+        @keyframes moveBg { from { background-position: 0 0; } to { background-position: 100px 100px; } }
+
+        .main-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+        .page { display: none; width: 100%; max-width: 650px; animation: fadeIn 0.6s ease-out; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        .main-title { font-size: 2.8rem; font-weight: 900; color: var(--gold); text-align: center; text-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+        .subtitle { text-align: center; color: #cbd5e1; margin-bottom: 30px; }
+
+        .card { background: var(--glass); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 25px; margin-bottom: 20px; }
+
+        /* الآية القرآنية بشكل فخم */
+        .quran-container { text-align: center; margin-bottom: 30px; padding: 20px; }
+        .quran-verse {
+            font-family: 'Amiri', serif; font-size: 1.7rem; color: #fff; line-height: 1.8;
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.5); display: inline-block;
+        }
+        .quran-verse::before { content: "﴿"; color: var(--gold); margin-left: 10px; }
+        .quran-verse::after { content: "﴾"; color: var(--gold); margin-right: 10px; }
+        .verse-source { display: block; font-size: 0.85rem; color: var(--gold); margin-top: 10px; opacity: 0.8; }
+
+        /* الأزرار والمدخلات */
+        .input-box { position: relative; margin-bottom: 15px; }
+        .input-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--primary); }
+        input { width: 100%; padding: 14px 45px 14px 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: white; }
+        
+        .btn { width: 100%; padding: 15px; border-radius: 15px; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .btn-primary { background: var(--primary); color: white; margin-top: 10px; }
+        .btn-quran { background: linear-gradient(45deg, #fbbf24, #d97706); color: #000; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3); }
+        .btn-guest { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; margin-top: 10px; }
+
+        .media-wrap { background: #000; border-radius: 15px; overflow: hidden; margin-top: 10px; border: 1px solid var(--primary); }
+        video, audio { width: 100%; display: block; }
+
+        .link-card { display: flex; align-items: center; gap: 15px; padding: 18px; background: rgba(255, 255, 255, 0.05); border-radius: 18px; margin-bottom: 12px; color: white; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .link-card:hover { background: var(--primary); transform: translateX(-5px); }
+
+        .pray-text { border-right: 4px solid var(--primary); padding: 15px; background: rgba(0,0,0,0.3); border-radius: 0 12px 12px 0; margin-bottom: 15px; line-height: 1.8; }
+
+        /* الفوتر الاحترافي */
+        footer { padding: 25px; text-align: center; background: rgba(0, 0, 0, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: auto; }
+        .designer-name { color: var(--gold); font-weight: 800; letter-spacing: 1px; }
+        .heart-icon { color: #ef4444; animation: pulse 1.5s infinite; margin: 0 5px; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animated"></div>
+
+    <div class="main-wrapper">
+        
+        <div id="loginPage" class="page active">
+            <h1 class="main-title">صدقة جارية</h1>
+            <p class="subtitle">نسألكم الدعاء لشهد رضا وأدهم سامي</p>
+            <div class="card">
+                <div class="input-box"><i class="fas fa-user"></i><input type="text" placeholder="اسم المستخدم" id="u"></div>
+                <div class="input-box"><i class="fas fa-lock"></i><input type="password" placeholder="كلمة المرور" id="p"></div>
+                <button class="btn btn-primary" onclick="validateLogin()">تسجيل الدخول</button>
+                <button class="btn btn-guest" onclick="showPage('sadaqaPage')">تصفح كضيف</button>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+                    ليس لديك حساب؟ <a href="#" onclick="showPage('signupPage')" style="color: var(--gold);">إنشاء حساب جديد</a>
+                </p>
+            </div>
+        </div>
+
+        <div id="signupPage" class="page">
+            <div class="card">
+                <h2 style="text-align: center; margin-bottom: 25px;">إنشاء حساب</h2>
+                <div class="input-box"><i class="fas fa-signature"></i><input type="text" placeholder="الاسم الكامل"></div>
+                <div class="input-box"><i class="fas fa-envelope"></i><input type="email" placeholder="البريد الإلكتروني"></div>
+                <div class="input-box"><i class="fas fa-key"></i><input type="password" placeholder="كلمة المرور"></div>
+                <button class="btn btn-primary" onclick="showPage('loginPage')">تأكيد التسجيل</button>
+                <button class="btn btn-guest" onclick="showPage('loginPage')">رجوع</button>
+            </div>
+        </div>
+
+        <div id="sadaqaPage" class="page">
+            <h1 class="main-title">صدقة جارية</h1>
+            <p class="subtitle">على روح شهد رضا وأدهم سامي</p>
+
+            <div class="quran-container">
+                <div class="quran-verse">وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِلْمُؤْمِنِينَ</div>
+                <span class="verse-source">[ سورة الإسراء - آية 82 ]</span>
+            </div>
+
+            <a href="quran.pdf" target="_blank" class="btn btn-quran">
+                <i class="fas fa-book-quran"></i> فتح المصحف الشريف (PDF)
+            </a>
+
+            <div class="card">
+                <p style="margin-bottom:12px;"><i class="fas fa-volume-up" style="color: var(--gold);"></i> الرقية الشرعية</p>
+                <div class="media-wrap"><audio src="./almuslem.mp3" controls></audio></div>
+            </div>
+
+            <div class="card">
+                <p style="margin-bottom:12px;"><i class="fas fa-play-circle" style="color: var(--gold);"></i> تلاوة عطرة</p>
+                <div class="media-wrap"><video src="./WhatsApp Video 2026-02-05 at 11.27.23 PM.mp4" controls></video></div>
+            </div>
+
+            <div class="card">
+                <a href="https://masba7a.com/s/163893978" target="_blank" class="link-card">
+                    <i class="fas fa-fingerprint" style="color: var(--gold);"></i> مسبحة الأذكار الإلكترونية
+                </a>
+                <a href="https://masba7a.com/s/163894163" target="_blank" class="link-card">
+                    <i class="fas fa-book-open" style="color: var(--gold);"></i> أدعية مأثورة للمتوفى
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="pray-text"><strong>أدهم سامي:</strong><br>اللهم ارحمه واغفر له وأسكنه فسيح جناتك.</div>
+                <div class="pray-text" style="border-right-color: var(--gold);"><strong>شهد رضا:</strong><br>اللهم نقهّا من الخطايا واجمعنا بها في جنات النعيم.</div>
+            </div>
+
+            <button onclick="showPage('loginPage')" class="btn btn-guest" style="color: #f87171; border-color: rgba(248, 113, 113, 0.2); margin-bottom: 30px;">
+                <i class="fas fa-power-off"></i> تسجيل الخروج
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <p class="footer-text">
+            تم تصميم هذا الموقع بكل <i class="fas fa-heart heart-icon"></i> بواسطة 
+            <span class="designer-name">هاجر الشيتاني</span>
+        </p>
+    </footer>
+
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        function validateLogin() {
+            const u = document.getElementById('u').value;
+            const p = document.getElementById('p').value;
+            if(!u || !p) alert("يرجى إدخال البيانات");
+            else showPage('sadaqaPage');
+        }
+    </script>
+</body>
+</html>
