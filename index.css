@@ -1,102 +1,142 @@
+/* إعدادات عامة ذكية */
 *{
     box-sizing: border-box;
-    padding: 0%;
-    margin: 0%;
-    background-repeat: no-repeat;
-   text-decoration: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
 }
-.true{
-    margin: 0px 550px ;
+
+/* تنسيق موحد للخلفية في كل الصفحات */
+.hagar, .hp, .uu {
+    background-image: url("./foto.jpeg") !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 }
-.hagar{
-  background-image: url(./foto.jpeg);
- background-position: center;
-background-size: cover;
-width: 100%;
-height: 100vh;
-color: black;
-font-size: 30px;
+
+/* تأثير تثبيت الخلفية للكمبيوتر فقط (لأن الموبايل لا يدعمه جيداً) */
+@media (min-width: 768px) {
+    .uu { background-attachment: fixed !important; }
 }
-.hmz{
-    font-size: 20px;
-    margin: 170px 200px;
-    color: black;
+
+/* العنوان الرئيسي بتأثير إضاءة */
+.true {
+    font-size: clamp(2rem, 8vw, 4rem);
+    color: #fff;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    margin: 40px 0;
+    text-align: center;
 }
-.hp{
-    background-image: url(./foto.jpeg);
-     background-position: center;
-background-size: cover;
-width: 100%;
-height: 100vh;
-    font-size: 20px; 
-    color: black;
+
+/* تصميم الفورم (الزجاجي الخرافي) */
+.hmz, .i {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px 30px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    color: white;
+    text-align: center;
 }
-.i{
-    font-size: 20px;
-     padding: 200px 600px;
-    color: black;
+
+/* تحسين شكل المدخلات والأزرار */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255,255,255,0.9);
 }
-.uu{
-    background-image: url(./foto.jpeg);
-     background-position: center;
-background-size: cover;
-background-attachment: fixed;
-min-height: 200vh;
-width: 100%;
-height: 100vh;
-    font-size: 15px; 
-    color: black;
-    padding: 10px 500px;
+
+button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background: #1e3a8a;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
 }
-.a{
-  margin-top: 0px;
-     text-align: right;
+
+button:hover {
+    background: #1e40af;
+    transform: translateY(-2px);
 }
-.n{
-    font-size: 30px;
-   margin-top:  80px;
-      text-align: right;
-      margin-right: 0px;
+
+/* صفحة الأذكار والدعاء (uu) */
+.uu {
+    padding: 40px 5%;
 }
-.r{
-    font-size: 30px;
-   margin-top:  80px;
-      text-align: right;
-      margin-right: 0px;
+
+.uu h1 {
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    margin-bottom: 20px;
 }
-#lim{
-    font-size: 30px;
-   margin-top:  10px;
-      text-align: right;
-      margin-right: 0px;
+
+/* تنسيق الروابط (المسابح والأدعية) */
+#lim a, #èè a {
+    display: inline-block;
+    background: rgba(0, 100, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    margin: 10px 0;
+    transition: 0.3s;
+    font-weight: bold;
 }
-.è{
-    font-size: 30px;
-   margin-top:  80px;
-      text-align: right;
-      margin-right: 0px;
+
+#lim a:hover, #èè a:hover {
+    background: #008000;
+    transform: scale(1.05);
 }
-#èè{
-    font-size: 30px;
-   margin-top:  15px;
-      text-align: right;
-      margin-right: 0px;
+
+/* تنسيق الفيديو */
+.ww video {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin: 30px auto;
 }
-.ww{
- text-align: left;
- margin-top: 30px;
- margin-left: 10px;
-}
-.ww video{
-width: 500px;
-height: auto;
-display: block;
-}
-.qq{
+
+/* نصوص الدعاء (جميلة ومنظمة) */
+.qq, .qw {
+    background: rgba(0, 0, 0, 0.6);
+    color: #f0f0f0;
+    padding: 25px;
+    border-radius: 15px;
+    line-height: 1.8;
+    font-size: 1.1rem;
     text-align: right;
-    
+    margin: 20px 0;
+    width: 100%;
+    max-width: 800px;
+    border-right: 5px solid #008000;
 }
-.qw{
-    text-align: right;
-    
+
+/* تعديلات الموبايل */
+@media (max-width: 600px) {
+    .i, .uu {
+        padding: 20px 5% !important;
+    }
+    .n, .r, .è { font-size: 1.2rem !important; }
 }
