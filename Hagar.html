@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صدقة جارية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #10b981;
+            --gold: #fbbf24;
+            --bg-dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+            font-family: 'Cairo', sans-serif;
+            text-decoration: none !important;
+            list-style: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* خلفية متحركة */
+        .bg-animated {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            z-index: -1;
+        }
+
+        .bg-animated::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            animation: moveBg 25s linear infinite;
+        }
+
+        @keyframes moveBg {
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
+        }
+
+        .main-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .page { display: none; width: 100%; max-width: 600px; animation: fadeIn 0.6s ease-out; }
+        .active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تكبير العنوان وتجميله */
+        h1.main-title { 
+            font-size: 3rem; /* حجم كبير */
+            font-weight: 900;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+            letter-spacing: -1px;
+        }
+
+        p.subtitle { 
+            text-align: center; 
+            font-size: 1.1rem; 
+            opacity: 0.9; 
+            margin-bottom: 35px;
+            color: #cbd5e1;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .input-box { position: relative; margin-bottom: 15px; }
+        .input-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--primary); }
+
+        input {
+            width: 100%;
+            padding: 14px 45px 14px 15px;
+            font-size: 1rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3);
+            color: white;
+            transition: 0.3s ease;
+        }
+        input:focus { border-color: var(--primary); outline: none; background: rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 15px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.05rem;
+        }
+
+        .btn-primary { background: var(--primary); color: white; margin-top: 10px; }
+        .btn-primary:hover { background: #059669; transform: scale(1.02); }
+
+        .btn-share { background: rgba(251, 191, 36, 0.15); color: var(--gold); border: 1px solid var(--gold); margin-top: 15px; }
+        .btn-share:hover { background: var(--gold); color: #000; }
+
+        .btn-guest { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; margin-top: 10px; }
+
+        .media-wrap { background: #000; border-radius: 18px; overflow: hidden; margin-top: 10px; border: 1px solid var(--primary); }
+        video, audio { width: 100%; display: block; }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            margin-bottom: 12px;
+            color: white;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+        .link-card:hover { background: var(--primary); transform: translateX(-5px); }
+
+        .pray-text {
+            border-right: 4px solid var(--primary);
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        @media (min-width: 992px) {
+            .page { max-width: 800px; }
+            .grid-media { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            h1.main-title { font-size: 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animated"></div>
+
+    <div class="main-wrapper">
+        
+        <div id="loginPage" class="page active">
+            <h1 class="main-title">صدقة جارية</h1>
+            <p class="subtitle">على روح شهد رضا وأدهم سامي</p>
+            
+            <div class="card">
+                <div class="input-box"><i class="fas fa-user"></i><input type="text" placeholder="اسم المستخدم" id="userInput"></div>
+                <div class="input-box"><i class="fas fa-lock"></i><input type="password" placeholder="كلمة المرور" id="passInput"></div>
+                
+                <button class="btn btn-primary" onclick="validateLogin()">
+                    <i class="fas fa-door-open"></i> دخول للمنصة
+                </button>
+                <button class="btn btn-guest" onclick="showPage('sadaqaPage')">
+                    <i class="fas fa-eye"></i> تصفح كضيف
+                </button>
+                
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+                    ليس لديك حساب؟ <a href="#" onclick="showPage('signupPage')" style="color: var(--gold); font-weight: bold;">اضغط هنا للتسجيل</a>
+                </p>
+            </div>
+        </div>
+
+        <div id="signupPage" class="page">
+            <div class="card">
+                <h2 style="text-align: center; margin-bottom: 25px;">عضوية جديدة</h2>
+                <div class="input-box"><i class="fas fa-signature"></i><input type="text" placeholder="الاسم الكامل" id="newName"></div>
+                <div class="input-box"><i class="fas fa-envelope"></i><input type="email" placeholder="البريد الإلكتروني"></div>
+                <div class="input-box"><i class="fas fa-key"></i><input type="password" placeholder="كلمة المرور" id="newPass"></div>
+                <button class="btn btn-primary" onclick="validateSignup()">تأكيد الإنشاء</button>
+                <button class="btn btn-guest" onclick="showPage('loginPage')">رجوع</button>
+            </div>
+        </div>
+
+        <div id="sadaqaPage" class="page">
+            <h1 class="main-title">صدقة جارية</h1>
+            <p class="subtitle">نسألكم الدعاء لشهد رضا وأدهم سامي</p>
+
+            <div class="grid-media">
+                <div class="card">
+                    <p style="margin-bottom:12px;"><i class="fas fa-volume-up" style="color: var(--gold);"></i> الرقية الشرعية</p>
+                    <div class="media-wrap"><audio src="./almuslem.mp3" controls></audio></div>
+                </div>
+
+                <div class="card">
+                    <p style="margin-bottom:12px;"><i class="fas fa-play-circle" style="color: var(--gold);"></i> تلاوة عطرة</p>
+                    <div class="media-wrap"><video src="./WhatsApp Video 2026-02-05 at 11.27.23 PM.mp4" controls></video></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <a href="https://masba7a.com/s/163893978" target="_blank" class="link-card">
+                    <i class="fas fa-fingerprint" style="color: var(--gold);"></i> مسبحة الأذكار الإلكترونية
+                </a>
+                <a href="https://masba7a.com/s/163894163" target="_blank" class="link-card">
+                    <i class="fas fa-book-open" style="color: var(--gold);"></i> أدعية مأثورة للمتوفى
+                </a>
+                <button class="btn btn-share" onclick="copyLink()">
+                    <i class="fas fa-share-nodes"></i> مشاركة الرابط لنيل الأجر
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="pray-text">
+                    <strong style="color:var(--gold)">أدهم سامي:</strong><br>
+                    اللهم ارحمه واغفر له وأسكنه فسيح جناتك، اللهم اجعل قبره روضة من رياض الجنة.
+                </div>
+                <div class="pray-text" style="border-right-color: var(--gold);">
+                    <strong style="color:var(--gold)">شهد رضا:</strong><br>
+                    اللهم نقهّا من الخطايا كما ينقى الثوب الأبيض من الدنس، واجمعنا بها في جنات النعيم.
+                </div>
+            </div>
+
+            <button onclick="showPage('loginPage')" class="btn btn-guest" style="color: #f87171; border-color: rgba(248, 113, 113, 0.2); margin-bottom: 50px;">
+                <i class="fas fa-power-off"></i> تسجيل الخروج
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function validateLogin() {
+            const u = document.getElementById('userInput').value;
+            const p = document.getElementById('passInput').value;
+            if(!u || !p) alert("يرجى كتابة البيانات أولاً");
+            else showPage('sadaqaPage');
+        }
+
+        function validateSignup() {
+            const n = document.getElementById('newName').value;
+            if(!n) alert("يرجى كتابة الاسم");
+            else { alert("تم إنشاء الحساب بنجاح"); showPage('loginPage'); }
+        }
+
+        // وظيفة نسخ الرابط
+        function copyLink() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert("تم نسخ رابط الصدقة.. جزاك الله خيراً");
+        }
+    </script>
+</body>
+</html>
